@@ -36,6 +36,30 @@ docker-compose down
 docker-compose logs -f
 ```
 
+### ChatGPT 스타일 터미널 UI 실행
+
+```bash
+# 의존성 설치
+pip install -r requirements.txt
+
+# ChatGPT 스타일 인터페이스 실행
+python chat_ui.py
+```
+
+**주요 기능:**
+- 🎨 Rich 라이브러리 기반 아름다운 터미널 UI
+- 💬 실시간 스트리밍 응답
+- 📜 대화 히스토리 관리
+- 📊 세션 통계 (메시지 수, 토큰 수, 세션 시간)
+- 🎯 마크다운 렌더링 지원
+
+**명령어:**
+- `/help` - 도움말
+- `/history` - 대화 기록
+- `/stats` - 세션 통계
+- `/clear` - 화면 지우기
+- `/quit` - 종료
+
 ## 학습 로드맵
 
 ### Phase 1: LLM 직접 실행해보기
