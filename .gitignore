@@ -1,0 +1,24 @@
+# Claude Code MCP 설정 (GitHub 토큰 포함)
+.claude-code/mcp_config.json
+
+# 환경 변수 파일
+.env
+.env.local
+.env.*.local
+
+# 의존성
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# IDE 설정
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS 파일
+.DS_Store
+Thumbs.db
