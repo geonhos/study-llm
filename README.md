@@ -171,6 +171,7 @@ docker-compose logs -f
 실습하면서 마주친 구체적인 어려움들을 `notes/` 디렉토리에 기록합니다.
 
 - [Phase 1: 메모리 부족 문제](notes/phase1-memory-issue.md)
+- [Phase 1: API 테스트 결과](notes/phase1-api-test.md)
 
 ### 구축의 어려움 정리
 "회사에 LLM을 직접 구축하기 힘든 이유"를 실무 관점에서 정리합니다.
