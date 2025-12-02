@@ -172,6 +172,7 @@ docker-compose logs -f
 
 - [Phase 1: 메모리 부족 문제](notes/phase1-memory-issue.md)
 - [Phase 1: API 테스트 결과](notes/phase1-api-test.md)
+- [Phase 2: Chain of Thought 테스트](notes/phase2-cot-test.md)
 
 ### 구축의 어려움 정리
 "회사에 LLM을 직접 구축하기 힘든 이유"를 실무 관점에서 정리합니다.
