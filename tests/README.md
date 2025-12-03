@@ -14,14 +14,22 @@ LLM 학습 및 실험을 위한 테스트 스크립트 모음
   - 추론 과정 평가
   - 응답 시간 측정
 
+- `phase2_hallucination_test.py` - Phase 2: Hallucination(환각) 현상 테스트
+  - 날조된 정보 생성 여부 확인
+  - 잘못된 정보 수정 능력 평가
+  - 일관성 및 신뢰성 테스트
+
 ## 실행 방법
 
 ```bash
 # Phase 1 테스트
 python3 tests/phase1_ollama_test.py
 
-# Phase 2 테스트
+# Phase 2: Chain of Thought 테스트
 python3 tests/phase2_cot_test.py
+
+# Phase 2: Hallucination 테스트
+python3 tests/phase2_hallucination_test.py
 ```
 
 ## 요구사항

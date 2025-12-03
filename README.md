@@ -132,7 +132,7 @@ python src/chat_ui.py
 **목표**: LLM의 실제 성능과 신뢰성 문제 이해
 
 - [ ] 다양한 프롬프트로 응답 품질 테스트
-- [ ] Hallucination(환각) 현상 확인
+- [x] Hallucination(환각) 현상 확인
 - [ ] 한국어 처리 능력 평가
 - [ ] 도메인 특화 질문에 대한 정확도 측정
 - [ ] Temperature, Top-p 등 파라미터 튜닝
@@ -245,6 +245,7 @@ python src/chat_ui.py
 - [Phase 1: 메모리 부족 문제](notes/phase1-memory-issue.md)
 - [Phase 1: API 테스트 결과](notes/phase1-api-test.md)
 - [Phase 2: Chain of Thought 테스트](notes/phase2-cot-test.md)
+- [Phase 2: Hallucination 현상 테스트](notes/phase2-hallucination-test.md)
 
 ### 구축의 어려움 정리
 "회사에 LLM을 직접 구축하기 힘든 이유"를 실무 관점에서 정리합니다.
