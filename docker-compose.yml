@@ -13,6 +13,21 @@ services:
     restart: unless-stopped
     command: serve
 
+  ollama-pull:
+    image: ollama/ollama:latest
+    container_name: ollama-pull
+    depends_on:
+      - ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        sleep 5
+        ollama pull llama2:7b-chat-q4_0
+        echo "Model llama2:7b-chat-q4_0 pulled successfully"
+    restart: "no"
+
 volumes:
   ollama_data:
     driver: local
