@@ -27,6 +27,8 @@ llm/
 │   ├── phase1-memory-issue.md
 │   ├── phase1-api-test.md
 │   └── phase2-cot-test.md
+├── docs/                   # 문서
+│   └── getting-started.md # 실습 가이드
 ├── .claude/               # Claude Code 설정
 │   ├── skills/            # 커스텀 스킬
 │   └── settings.json      # 프로젝트 설정
@@ -34,6 +36,12 @@ llm/
 ├── requirements.txt       # Python 의존성
 └── README.md
 ```
+
+## 빠른 시작
+
+처음 시작하시는 분은 [실습 가이드](docs/getting-started.md)를 참고하세요.
+
+Docker 실행부터 Chat UI 사용까지 단계별로 안내합니다.
 
 ## 환경 설정
 
