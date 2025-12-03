@@ -59,11 +59,11 @@ pip install -r requirements.txt
 # Ollama 컨테이너 실행
 docker-compose up -d
 
-# Llama 2 7B 모델 다운로드
-docker exec -it ollama ollama pull llama2:7b
+# Llama 2 7B 모델 다운로드 (4-bit 양자화)
+docker exec -it ollama ollama pull llama2:7b-chat-q4_0
 
 # 모델 실행 테스트
-docker exec -it ollama ollama run llama2:7b
+docker exec -it ollama ollama run llama2:7b-chat-q4_0
 ```
 
 ### 컨테이너 관리

@@ -10,7 +10,7 @@ import time
 
 # Ollama API 엔드포인트
 OLLAMA_URL = "http://localhost:11434"
-MODEL_NAME = "llama2:7b"
+MODEL_NAME = "llama2:7b-chat-q4_0"
 
 
 def check_ollama_status():
@@ -197,7 +197,7 @@ def main():
     if not check_ollama_status():
         print("\n⚠️  먼저 Ollama 서버를 실행하고 모델을 다운로드하세요:")
         print("  docker-compose up -d")
-        print("  docker exec ollama ollama pull llama2:7b")
+        print("  docker exec ollama ollama pull llama2:7b-chat-q4_0")
         return
 
     # 메뉴 선택

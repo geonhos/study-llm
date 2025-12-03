@@ -23,7 +23,7 @@ from rich import box
 
 # Ollama API 설정
 OLLAMA_URL = "http://localhost:11434"
-MODEL_NAME = "llama2:7b"
+MODEL_NAME = "llama2:7b-chat-q4_0"
 
 console = Console()
 
