@@ -37,6 +37,22 @@ llm/
 
 ## 환경 설정
 
+### Python 가상 환경 설정
+
+```bash
+# 가상 환경 생성
+python3 -m venv venv
+
+# 가상 환경 활성화 (macOS/Linux)
+source venv/bin/activate
+
+# 가상 환경 활성화 (Windows)
+venv\Scripts\activate
+
+# 의존성 설치
+pip install -r requirements.txt
+```
+
 ### Ollama 실행 (Docker Compose)
 
 ```bash
@@ -63,8 +79,8 @@ docker-compose logs -f
 ### ChatGPT 스타일 터미널 UI 실행
 
 ```bash
-# 의존성 설치
-pip install -r requirements.txt
+# 가상 환경 활성화 (먼저 위의 가상 환경 설정 완료 필요)
+source venv/bin/activate
 
 # ChatGPT 스타일 인터페이스 실행
 python src/chat_ui.py
