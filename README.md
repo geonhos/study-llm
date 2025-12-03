@@ -11,6 +11,30 @@
 
 실무 관점에서 파악하고 정리합니다.
 
+## 프로젝트 구조
+
+```
+llm/
+├── src/                    # 소스 코드
+│   ├── chat_ui.py         # ChatGPT 스타일 터미널 UI
+│   └── __init__.py
+├── tests/                  # 테스트 스크립트
+│   ├── phase1_ollama_test.py    # Phase 1: Ollama API 기본 테스트
+│   ├── phase2_cot_test.py       # Phase 2: Chain of Thought 테스트
+│   ├── __init__.py
+│   └── README.md
+├── notes/                  # 학습 노트
+│   ├── phase1-memory-issue.md
+│   ├── phase1-api-test.md
+│   └── phase2-cot-test.md
+├── .claude/               # Claude Code 설정
+│   ├── skills/            # 커스텀 스킬
+│   └── settings.json      # 프로젝트 설정
+├── docker-compose.yml     # Ollama 컨테이너 설정
+├── requirements.txt       # Python 의존성
+└── README.md
+```
+
 ## 환경 설정
 
 ### Ollama 실행 (Docker Compose)
@@ -43,7 +67,7 @@ docker-compose logs -f
 pip install -r requirements.txt
 
 # ChatGPT 스타일 인터페이스 실행
-python chat_ui.py
+python src/chat_ui.py
 ```
 
 **주요 기능:**
