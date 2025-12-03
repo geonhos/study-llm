@@ -1,0 +1,15 @@
+{
+  "name": "generate_commit_message",
+  "description": "Generate a conventional commit message based on the staged git diff.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "diff": {
+        "type": "string",
+        "description": "Git diff of staged changes"
+      }
+    },
+    "required": ["diff"]
+  },
+  "code": "const TEMPLATE = `\n아래 규칙을 지켜서 커밋 메시지를 작성한다.\n\n1) <type>(<scope>): <summary>  형태여야 한다.\n2) type 은 feat|fix|refactor|test|docs|chore 중 하나여야 한다.\n3) summary 는 70자 이하로 간결하게 쓴다.\n4) body 가 필요한 경우 '무엇을', '왜' 했는지만 적는다.\n\ndiff 를 분석해 가장 적절한 type 과 scope 를 추론해라.\nscope 는 파일 경로나 코드 맥락을 기반으로 자동 도출해라.\nsummary 는 변경사항을 요약한다.\n`;\n\nasync function generate({ diff }) {\n  const prompt = TEMPLATE + \"\\n\\n\" + diff;\n  const result = await callLLM(prompt);\n  return { message: result.trim() };\n}"
+}
