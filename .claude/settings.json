@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit:*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"$ARGUMENTS\" | jq -r '.command' | grep -Eo -- '-m[[:space:]]+\"[^\"]+\"' | sed 's/-m[[:space:]]*\"\\(.*\\)\"/\\1/' | grep -Eq '^(feat|fix|refactor|test|docs|chore)\\([a-zA-Z0-9_-]+\\): .+' || (echo '❌ Commit message does not follow the required format: <type>(<scope>): <summary>' && exit 1)",
+            "statusMessage": "Validating commit message format"
+          }
+        ]
+      }
+    ]
+  }
+}
