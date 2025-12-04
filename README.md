@@ -1,51 +1,54 @@
-# LLM Study
+# LLM & Agent Study
 
-## 학습 목표
+## 개요
 
-**"회사에 LLM을 직접 구축하기 힘든 이유"**를 실습을 통해 이해하기
+LLM과 AI Agent를 실무적인 관점에서 학습하고 실험하는 프로젝트입니다.
 
-직접 LLM을 실행하고 Agent를 구축하는 과정에서:
-- 얼마나 많은 노력과 신경이 필요한지
-- 어떤 기술적 처리들이 요구되는지
-- 실제 프로덕션 환경에서 고려해야 할 사항들은 무엇인지
-
-실무 관점에서 파악하고 정리합니다.
+**학습 목표**: "회사에 LLM/Agent를 직접 구축하기 힘든 이유"를 실습을 통해 이해하기
 
 ## 프로젝트 구조
 
 ```
-llm/
-├── src/                    # 소스 코드
-│   ├── chat_ui.py         # ChatGPT 스타일 터미널 UI
-│   └── __init__.py
-├── tests/                  # 테스트 스크립트
-│   ├── phase1_ollama_test.py    # Phase 1: Ollama API 기본 테스트
-│   ├── phase2_cot_test.py       # Phase 2: Chain of Thought 테스트
-│   ├── __init__.py
-│   └── README.md
-├── notes/                  # 학습 노트
-│   ├── phase1-memory-issue.md
-│   ├── phase1-api-test.md
-│   └── phase2-cot-test.md
-├── docs/                   # 문서
-│   └── getting-started.md # 실습 가이드
-├── .claude/               # Claude Code 설정
-│   ├── skills/            # 커스텀 스킬
-│   └── settings.json      # 프로젝트 설정
-├── docker-compose.yml     # Ollama 컨테이너 설정
-├── requirements.txt       # Python 의존성
-└── README.md
+workspace/llm/
+├── llm/                    # LLM 기초 학습 (Phase 1-2 완료)
+│   ├── src/               # Chat UI 구현
+│   ├── tests/             # LLM 품질 테스트
+│   ├── notes/             # 학습 노트
+│   └── docs/              # 문서
+├── agent/                  # Agent 학습 (진행 예정)
+└── venv/                  # Python 가상 환경
 ```
 
-## 빠른 시작
+## 학습 단계
 
-처음 시작하시는 분은 [실습 가이드](docs/getting-started.md)를 참고하세요.
+### ✅ Phase 1-2: LLM 기초 (완료)
+**위치**: `llm/` 디렉토리
 
-Docker 실행부터 Chat UI 사용까지 단계별로 안내합니다.
+로컬에서 LLM을 직접 실행하고 모델의 품질과 한계를 파악했습니다.
+
+**주요 내용**:
+- Ollama를 통한 Llama 2 7B 모델 실행
+- 인프라 레벨의 어려움 체험 (메모리, CPU, 응답 속도)
+- 모델 품질 테스트 (Hallucination, 한국어 처리, CoT)
+- ChatGPT 스타일 터미널 UI 구현
+
+**상세 내용**: [llm/README.md](llm/README.md)
+
+### 🚀 Phase 3+: Agent 시스템 (진행 예정)
+**위치**: `agent/` 디렉토리
+
+LLM 기반 Agent 시스템을 구축하면서 엔지니어링 복잡도를 체감합니다.
+
+**계획된 내용**:
+- Agent 아키텍처 설계
+- Tool/Function Calling 구현
+- Multi-turn 대화 및 상태 관리
+- RAG (Retrieval-Augmented Generation)
+- 프로덕션 레벨 고려사항
 
 ## 환경 설정
 
-### Python 가상 환경 설정
+### Python 가상 환경
 
 ```bash
 # 가상 환경 생성
@@ -56,144 +59,13 @@ source venv/bin/activate
 
 # 가상 환경 활성화 (Windows)
 venv\Scripts\activate
-
-# 의존성 설치
-pip install -r requirements.txt
 ```
 
-### Ollama 실행 (Docker Compose)
+### 각 프로젝트 실행
 
-```bash
-# Ollama 컨테이너 실행
-docker-compose up -d
-
-# Llama 2 7B 모델 다운로드 (4-bit 양자화)
-docker exec -it ollama ollama pull llama2:7b-chat-q4_0
-
-# 모델 실행 테스트
-docker exec -it ollama ollama run llama2:7b-chat-q4_0
-```
-
-### 컨테이너 관리
-
-```bash
-# 컨테이너 중지
-docker-compose down
-
-# 로그 확인
-docker-compose logs -f
-```
-
-### ChatGPT 스타일 터미널 UI 실행
-
-```bash
-# 가상 환경 활성화 (먼저 위의 가상 환경 설정 완료 필요)
-source venv/bin/activate
-
-# ChatGPT 스타일 인터페이스 실행
-python src/chat_ui.py
-```
-
-**주요 기능:**
-- 🎨 Rich 라이브러리 기반 아름다운 터미널 UI
-- 💬 실시간 스트리밍 응답
-- 📜 대화 히스토리 관리
-- 📊 세션 통계 (메시지 수, 토큰 수, 세션 시간)
-- 🎯 마크다운 렌더링 지원
-
-**명령어:**
-- `/help` - 도움말
-- `/history` - 대화 기록
-- `/stats` - 세션 통계
-- `/clear` - 화면 지우기
-- `/quit` - 종료
-
-## 학습 로드맵
-
-### Phase 1: LLM 직접 실행해보기
-
-**목표**: LLM을 직접 구동하면서 인프라 레벨의 어려움 파악
-
-- [ ] Ollama로 Llama 2 7B 모델 로컬 실행
-- [ ] 모델 다운로드 크기 및 시간 측정
-- [ ] 메모리/CPU 사용량 모니터링
-- [ ] 응답 속도(latency) 측정 및 분석
-- [ ] 여러 요청 동시 처리 시 성능 변화 관찰
-
-**고려해야 할 포인트**:
-- 모델 크기: 7B 파라미터 모델도 4-8GB 이상 메모리 필요
-- GPU vs CPU: 응답 속도 차이 (초 단위 vs 분 단위)
-- 동시성 처리: 멀티 유저 환경에서 리소스 관리
-- 모델 로딩 시간: Cold start 문제
-- 스케일링: 트래픽 증가 시 인프라 비용
-
-### Phase 2: 모델 품질과 한계 파악
-
-**목표**: LLM의 실제 성능과 신뢰성 문제 이해
-
-- [ ] 다양한 프롬프트로 응답 품질 테스트
-- [x] Hallucination(환각) 현상 확인
-- [ ] 한국어 처리 능력 평가
-- [ ] 도메인 특화 질문에 대한 정확도 측정
-- [ ] Temperature, Top-p 등 파라미터 튜닝
-
-**고려해야 할 포인트**:
-- 답변의 일관성: 같은 질문에 다른 답변
-- 사실 확인: 잘못된 정보 생성 가능성
-- 편향성: 학습 데이터의 편향이 답변에 반영
-- 컨텍스트 제한: 긴 대화나 문서 처리의 한계
-- 최신 정보 부재: 학습 시점 이후 정보 부족
-
-### Phase 3: Agent 시스템 구축
-
-**목표**: LLM 기반 Agent를 만들면서 엔지니어링 복잡도 체감
-
-- [ ] LangChain 또는 직접 구현으로 기본 Agent 구조 설계
-- [ ] Tool/Function Calling 구현
-- [ ] Multi-turn 대화 상태 관리
-- [ ] 메모리/컨텍스트 관리 시스템
-- [ ] 에러 핸들링 및 재시도 로직
-
-**고려해야 할 포인트**:
-- 상태 관리: 대화 히스토리, 컨텍스트 유지
-- 에러 복구: LLM 응답 실패 시 처리
-- 비용 추정: API 호출 횟수 * 토큰 수
-- 응답 파싱: LLM 출력의 비정형성 처리
-- 디버깅 난이도: 비결정적 동작으로 재현 어려움
-
-### Phase 4: RAG (Retrieval-Augmented Generation) 구현
-
-**목표**: 실시간 정보 활용을 위한 추가 시스템 구축 경험
-
-- [ ] Vector Database 선택 및 설정 (ChromaDB, Pinecone 등)
-- [ ] 문서 임베딩 및 저장
-- [ ] 유사도 검색 및 컨텍스트 구성
-- [ ] RAG 파이프라인 통합
-- [ ] 검색 품질 평가 및 개선
-
-**고려해야 할 포인트**:
-- 추가 인프라: Vector DB, 임베딩 모델 필요
-- 데이터 동기화: 최신 정보 업데이트 전략
-- 검색 정확도: Retrieval 품질이 답변에 직접 영향
-- 레이턴시 증가: 검색 + LLM 호출의 누적 시간
-- 청크 전략: 문서 분할 방식에 따른 성능 차이
-
-### Phase 5: 프로덕션 레벨 고려사항
-
-**목표**: 실제 서비스 운영 시 필요한 요소들 파악
-
-- [ ] 로깅 및 모니터링 시스템
-- [ ] Rate limiting 및 큐 관리
-- [ ] 응답 캐싱 전략
-- [ ] 사용자 입력 검증 및 필터링
-- [ ] 비용 추적 및 최적화
-
-**고려해야 할 포인트**:
-- 보안: Prompt injection, 민감 정보 노출
-- 비용 관리: 예상치 못한 과금 폭탄
-- 가용성: 모델 서버 다운타임 대응
-- 규정 준수: 데이터 보관, 개인정보 처리
-- 책임성: AI 생성 결과에 대한 법적 책임
+각 디렉토리의 README를 참고하세요:
+- LLM 기초: [llm/README.md](llm/README.md)
+- Agent: [agent/README.md](agent/README.md) (작성 예정)
 
 ## 학습 자료
 
@@ -212,59 +84,19 @@ python src/chat_ui.py
 - [LangChain Documentation](https://python.langchain.com/)
 - [Prompt Engineering Guide](https://www.promptingguide.ai/)
 
-## 실습 프로젝트
+## 학습 일정
 
-각 Phase를 완료하면서 단계적으로 구현할 프로젝트
-
-### 프로젝트 목표
-간단한 업무 자동화 Agent를 만들면서 실제 구축 시 마주치는 문제점들을 체험
-
-### 프로젝트 구성
-1. **Phase 1-2**: CLI 기반 질의응답 시스템
-   - 기본적인 LLM 호출 및 응답 처리
-   - 성능 메트릭 수집 (응답 시간, 메모리 사용량)
-
-2. **Phase 3**: 도구를 사용하는 Agent
-   - 날씨 조회, 계산기, 웹 검색 등 외부 도구 연동
-   - 멀티턴 대화 및 상태 관리
-
-3. **Phase 4**: RAG 기반 문서 QA
-   - 회사 문서/매뉴얼 검색 및 답변
-   - 검색 품질 및 답변 정확도 평가
-
-4. **Phase 5**: 프로덕션 준비
-   - API 서버화 (FastAPI)
-   - 모니터링 대시보드
-   - 비용 및 성능 리포트
-
-## 학습 노트
-
-### 직접 겪은 문제점과 해결 과정
-실습하면서 마주친 구체적인 어려움들을 `notes/` 디렉토리에 기록합니다.
-
-- [Phase 1: 메모리 부족 문제](notes/phase1-memory-issue.md)
-- [Phase 1: API 테스트 결과](notes/phase1-api-test.md)
-- [Phase 2: Chain of Thought 테스트](notes/phase2-cot-test.md)
-- [Phase 2: Hallucination 현상 테스트](notes/phase2-hallucination-test.md)
-
-### 구축의 어려움 정리
-"회사에 LLM을 직접 구축하기 힘든 이유"를 실무 관점에서 정리합니다.
-
-#### 기술적 측면
-- [ ] 인프라 리소스 요구사항
-- [ ] 성능과 비용의 트레이드오프
-- [ ] 엔지니어링 복잡도
-
-#### 운영적 측면
-- [ ] 품질 보증의 어려움
-- [ ] 유지보수 부담
-- [ ] 보안 및 규정 준수
-
-#### 비즈니스 측면
-- [ ] 개발 및 운영 인력
-- [ ] 총 소유 비용 (TCO)
-- [ ] 시장 솔루션과의 비교
+- **2025-12-02 ~ 2025-12-04**: LLM 기초 (Phase 1-2) - ✅ 완료
+- **2025-12-04 ~**: Agent 시스템 (Phase 3+) - 🚀 시작 예정
 
 ---
 
-**시작일**: 2025-12-02
+**주요 발견사항**
+
+LLM을 직접 구축하고 운영하는 것은 생각보다 훨씬 어렵습니다:
+
+1. **인프라 비용**: 7B 모델도 최소 4-8GB 메모리 필요, GPU 없이는 실용적인 응답 속도 불가능
+2. **품질 관리**: Hallucination, 일관성, 한국어 품질 등 예측하기 어려운 문제들
+3. **엔지니어링 복잡도**: 상태 관리, 에러 처리, 컨텍스트 관리 등 추가적인 엔지니어링 필요
+
+실무에서는 OpenAI, Anthropic 같은 API 서비스를 사용하는 것이 훨씬 효율적일 수 있습니다.
